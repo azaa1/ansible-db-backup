@@ -8,7 +8,6 @@
       - name: Archive the DB
         archive:
           path: /var/lib/mysql/"{{ dbname }}"
-          format: gz
         register: dbarchive
 
       - name: Save file to different location
