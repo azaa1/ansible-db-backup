@@ -7,9 +7,7 @@
 
       - name: Archive the DB
         archive:
-          path: "{{ dbname }}"
-        args:
-          chdir: /var/lib/mysql/
+          path: /var/lib/mysql/"{{ dbname }}"
         register: dbarchive
 
       - name: Save file to different location
