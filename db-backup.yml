@@ -1,0 +1,15 @@
+---
+  - name: Backup MySQL-DB to Remote Backup-Server
+    hosts: {{ db-host }}  #DB IP
+    tasks:
+      - name: Archive the DB
+        archive:
+          path: {{ db-name }}
+        args:
+          chdir: /var/lib/mysql
+        register: {{ db-archive }}
+
+      - name: Save file to different location
+        file:
+          src: {{ db-archive }}
+          dest: /tmp/{{ db-archive }}
