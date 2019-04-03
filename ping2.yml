@@ -1,0 +1,6 @@
+---
+  - name: Ping DB-host
+    hosts: "{{ dbhost }}"
+    tasks:
+      - name:
+        ping:
