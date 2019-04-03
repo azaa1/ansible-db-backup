@@ -10,11 +10,11 @@
           path: "/var/lib/mysql/{{ dbname }}"
           dest: /tmp/db{{ansible_date_time.date}}.tar.gz
 
+  - name: Get the file from DB-Host
+    hosts: "{{ backuphost }}"
+    tasks:
       - name: Send the file to remote machine
         synchronize:
-          mode: push
           src: /tmp/*.tar.gz
           dest: /tmp/db_backup.gz
-        delegate_to: "{{ backuphost }}"
-        become: yes
-        become_user: root
+        delegate_to: "{{ dbhost }}"
