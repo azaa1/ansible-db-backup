@@ -1,6 +1,6 @@
 ---
   - name: Ping hosts
-    hosts: 138.197.70.13
+    hosts: "{{ db-host }}"
     tasks:
       name: Ping
       ping:
