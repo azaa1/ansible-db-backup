@@ -1,6 +1,11 @@
 ---
   - name: Ping hosts
-    hosts: "{{ db-host }}"
+    hosts: "{{ dbhost }}"
+
+    vars_prompt:
+      - name: "dbhost"
+        prompt: "Enter DB host-IP"
+        private: no
     tasks:
-      name: Ping
-      ping:
+      - name: Ping
+        ping:
