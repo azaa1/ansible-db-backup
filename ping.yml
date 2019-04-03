@@ -1,6 +1,6 @@
 ---
   - name: Ping hosts
-    hosts: '{{ host }}'
+    hosts: "{{host}}"
     tasks:
       name: Ping
       ping:
