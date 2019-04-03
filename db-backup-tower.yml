@@ -1,0 +1,18 @@
+---
+  - name: Backup MySQL-DB to Remote Backup-Server
+    hosts: "{{ dbhost }}"  #DB IP
+    tasks:
+      - name: Ping
+        ping:
+
+      - name: Archive the DB
+        archive:
+          path: "{{ dbname }}"
+        args:
+          chdir: /var/lib/mysql/
+        register: "{{ dbarchive }}"
+
+      - name: Save file to different location
+        file:
+          src: "{{ dbarchive }}"
+          dest: /tmp/"{{ dbarchive }}"
