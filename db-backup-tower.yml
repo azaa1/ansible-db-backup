@@ -7,10 +7,10 @@
 
       - name: Archive the DB
         archive:
-          path: /var/lib/mysql/"{{ dbname }}"
+          path: "/var/lib/mysql/{{ dbname }}"
         register: dbarchive
 
       - name: Save file to different location
         file:
           src: "{{ dbarchive }}"
-          dest: /tmp/"{{ dbarchive }}"
+          dest: "/tmp/{{ dbarchive }}"
