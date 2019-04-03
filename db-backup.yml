@@ -1,15 +1,24 @@
 ---
   - name: Backup MySQL-DB to Remote Backup-Server
-    hosts: '{{ db-host }}'  #DB IP
+    hosts: '{{ dbhost }}'  #DB IP
+
+    vars_prompt:
+
+      - name: "dbhost"
+        prompt: "Enter DB-host IP"
+        private: no
+
+      - name: "dbname"
+        prompt: "Enter DB-name to archive"
     tasks:
       - name: Archive the DB
         archive:
-          path: '{{ db-name }}'
+          path: "{{ dbname }}"
         args:
           chdir: /var/lib/mysql/
-        register: '{{ db-archive }}'
+        register: "{{ dbarchive }}"
 
       - name: Save file to different location
         file:
-          src: '{{ db-archive }}'
-          dest: /tmp/'{{ db-archive }}'
+          src: "{{ dbarchive }}"
+          dest: /tmp/"{{ dbarchive }}"
