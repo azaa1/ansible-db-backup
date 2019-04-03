@@ -12,6 +12,9 @@
 
       - name: Send the file to remote machine
         synchronize:
+          mode: push
           src: /tmp/*.tar.gz
           dest: "/tmp/db_backup{{ansible_date_time}}{{ dbname }}"
         delegate_to: "{{ backuphost }}"
+        become: yes
+        become_user: root
