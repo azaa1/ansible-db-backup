@@ -1,6 +1,6 @@
 ---
   - name: Ping hosts
-    hosts: "{{ host-ip }}"
+    hosts: 138.197.70.13
     tasks:
       name: Ping
       ping:
