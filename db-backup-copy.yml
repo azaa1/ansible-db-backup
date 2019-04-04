@@ -5,7 +5,7 @@
     handlers:
       - name: Send the file to Backup-Server
         shell: "scp /tmp/db*.tar.gz {{ backuphost }}:/{{ backupfolder }}/" #backuphost and backupfolder
-        listen: "archive complete"
+        listen: "start backup"
 
     tasks:
       - name: Ping
@@ -15,3 +15,4 @@
         archive:
           path: "/var/lib/mysql/{{ dbname }}"  #DB name
           dest: /tmp/db{{ansible_date_time.date}}.tar.gz
+        notify: "start backup"
