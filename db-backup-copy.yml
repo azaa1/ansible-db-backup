@@ -10,8 +10,11 @@
           path: "/var/lib/mysql/{{ dbname }}"  #DB name
           dest: /tmp/db{{ansible_date_time.date}}.tar.gz
 
-      - name: Copy the file Backup-Server
-        copy:
-          src: /tmp/*.gz
-          remote_src: yes
-          dest: "{{ backupserver }}:/tmp/"
+      - name: Send the file to Backup-Server
+        shell: "scp /tmp/db*.tar.gz {{ backuphost }}:/tmp/"
+
+      #- name: Copy the file Backup-Server
+        #copy:
+          #src: /tmp/*.gz
+          #remote_src: yes
+          #dest: "{{ backupserver }}:/tmp/"
