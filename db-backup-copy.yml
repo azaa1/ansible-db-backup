@@ -12,6 +12,6 @@
 
       - name: Copy the file Backup-Server
         copy:
-          src: /tmp/db*.gz
+          src: /tmp/*.gz
           remote_src: yes
           dest: "{{ backupserver }}:/tmp/"
